@@ -13,6 +13,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Avalon_PacketSender.ViewModels"
     xmlns:vm="using:Avalon_PacketSender.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -23,6 +24,9 @@
         -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
+    <Window.Resources>
+        <vm:MainWindowViewModel x:Key="Vm" />
+    </Window.Resources>
     <Grid RowDefinitions="Auto,1.5*,*,30">
 
         <!--  GRID ROW 1 : HEADER  -->
@@ -85,26 +89,48 @@
 
                 <!--  BUTTONS:  -->
                 <Grid Grid.Column="1">
+
                     <StackPanel Margin="0,50,0,0">
-                        <Button
-                            Command="{Binding SendCommand}"
-                            CommandParameter="{Binding StringToSendBox}"
-                            Content="Send"
-                            CornerRadius="7"
-                            Height="37"
-                            HorizontalContentAlignment="Center"
-                            Margin="0,0,0,0"
-                            VerticalContentAlignment="Center"
-                            Width="70" />
-                        <Button
-                            Content="Save"
-                            CornerRadius="7"
-                            Height="37"
-                            HorizontalContentAlignment="Center"
-                            Margin="0,24,0,0"
-                            VerticalContentAlignment="Center"
-                            Width="70" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                Command="{Binding SendCommand}"
+                                CommandParameter="{Binding StringToSendBox}"
+                                Content="Send"
+                                CornerRadius="7"
+                                Height="37"
+                                HorizontalContentAlignment="Center"
+                                Margin="0,0,0,0"
+                                VerticalContentAlignment="Center"
+                                Width="70" />
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                Command="{Binding SavePresetCommand}"
+                                CommandParameter="{Binding StringToSendBox}"
+                                Content="Save"
+                                CornerRadius="7"
+                                Height="37"
+                                HorizontalContentAlignment="Center"
+                                Margin="0,24,0,0"
+                                Name="SavePreset"
+                                VerticalContentAlignment="Center"
+                                Width="70" />
+                            <Button
+                                Command="{Binding DeletePresetCommand}"
+                                CommandParameter="{Binding selectedPresetInViewer}"
+                                Content="Delete"
+                                CornerRadius="7"
+                                Height="37"
+                                HorizontalContentAlignment="Center"
+                                Margin="25,24,0,0"
+                                Name="DeletePreset"
+                                VerticalContentAlignment="Center"
+                                Width="70" />
+                        </StackPanel>
+
                     </StackPanel>
+
                 </Grid>
                 <Grid Grid.Column="2">
                     <StackPanel
@@ -138,32 +164,55 @@
                     FontSize="12"
                     FontWeight="Black"
                     Foreground="#f8f8f8" />
+
                 <Grid Background="#454545" Grid.Row="1">
-                    <ListBox>
-                        x:Name="EntryListView"
-                        Grid.Column="1"
-                        Background="Transparent">
+                    <ListBox
+                        Background="Transparent"
+                        ItemsSource="{Binding PresetListBoxList}"
+                        Name="PresetListView"
+                        SelectedItem="{Binding selectedPresetInViewer}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid ColumnDefinitions="*,*,*,*,*">
+                                <Grid ColumnDefinitions="40,100,60,6*,*">
                                     <TextBlock
-                                        FontWeight="Bold"
                                         Grid.Column="0"
-                                        Text="Id" />
-                                    <TextBlock Grid.Column="1" Text="IpAddress" />
-                                    <TextBlock Grid.Column="2" Text="Port" />
-                                    <TextBlock Grid.Column="3" Text="Ascii Message To Send" />
-                                    <Button
-                                        Background="Chartreuse"
-                                        CornerRadius="7"
+                                        Name="Id"
+                                        Text="{Binding Id}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Name="IpAdress"
+                                        Text="{Binding RemoteIpAdress}" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Name="Port"
+                                        Text="{Binding RemotePort}" />
+                                    <TextBlock
+                                        Grid.Column="3"
+                                        Name="StringToSend"
+                                        Text="{Binding StringToSend}" />
+                                    <StackPanel
                                         Grid.Column="4"
                                         HorizontalAlignment="Right"
-                                        Width="40" />
+                                        Orientation="Horizontal"
+                                        x:DataType="vm:MainWindowViewModel">
+                                        <Button
+                                            Background="Orchid"
+                                            CornerRadius="7"
+                                            HorizontalAlignment="Right"
+                                            Margin="0,0,10,0"
+                                            Width="30" />
+                                        <Button
+                                            Background="Chartreuse"
+                                            CornerRadius="7"
+                                            HorizontalAlignment="Right"
+                                            Width="40"
+                                            x:DataType="vm:MainWindowViewModel" />
+                                    </StackPanel>
+
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                 </Grid>
             </Grid>
 
@@ -190,7 +239,7 @@
                         Margin="0,0,10,10"
                         Text="{Binding ListeningPort}"
                         VerticalAlignment="Top"
-                        Watermark="f.e.:12000"
+                        Watermark="4000"
                         Width="100" />
 
                     <ToggleButton

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CJj6rGA9fT+9GkkQDDsTKlH4NoJdT+zGE0p753hVUwwBKM66VkE1pD3v0NGWy9+APrT9CNHZalq4Py4GUHldsQ==",
+  "dgSpecHash": "4/Rz56HgF2JFpQ2zU/1tXwPT0DDMMtgG90XsENg85LIbQI6pVvFswUDYKLETDUQjmSgr1KwxLg4aQUwGWjsFyQ==",
   "success": true,
   "projectFilePath": "/Users/kuehnl/RiderProjects/Avalon_PacketSender/Avalon_PacketSender/Avalon_PacketSender.csproj",
   "expectedPackageFiles": [
@@ -43,6 +43,12 @@
     "/Users/kuehnl/.nuget/packages/skiasharp.nativeassets.webassembly/2.88.7/skiasharp.nativeassets.webassembly.2.88.7.nupkg.sha512",
     "/Users/kuehnl/.nuget/packages/skiasharp.nativeassets.win32/2.88.7/skiasharp.nativeassets.win32.2.88.7.nupkg.sha512",
     "/Users/kuehnl/.nuget/packages/splat/14.4.1/splat.14.4.1.nupkg.sha512",
+    "/Users/kuehnl/.nuget/packages/sqlite/3.13.0/sqlite.3.13.0.nupkg.sha512",
+    "/Users/kuehnl/.nuget/packages/sqlite-net-pcl/1.9.172/sqlite-net-pcl.1.9.172.nupkg.sha512",
+    "/Users/kuehnl/.nuget/packages/sqlitepclraw.bundle_green/2.1.2/sqlitepclraw.bundle_green.2.1.2.nupkg.sha512",
+    "/Users/kuehnl/.nuget/packages/sqlitepclraw.core/2.1.2/sqlitepclraw.core.2.1.2.nupkg.sha512",
+    "/Users/kuehnl/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.2/sqlitepclraw.lib.e_sqlite3.2.1.2.nupkg.sha512",
+    "/Users/kuehnl/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.2/sqlitepclraw.provider.e_sqlite3.2.1.2.nupkg.sha512",
     "/Users/kuehnl/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
     "/Users/kuehnl/.nuget/packages/system.collections.immutable/5.0.0/system.collections.immutable.5.0.0.nupkg.sha512",
     "/Users/kuehnl/.nuget/packages/system.componentmodel.annotations/4.5.0/system.componentmodel.annotations.4.5.0.nupkg.sha512",

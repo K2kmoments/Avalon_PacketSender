@@ -39,6 +39,10 @@
 /Users/kuehnl/.nuget/packages/reactiveui/18.3.1/lib/net6.0/ReactiveUI.dll
 /Users/kuehnl/.nuget/packages/skiasharp/2.88.7/lib/net6.0/SkiaSharp.dll
 /Users/kuehnl/.nuget/packages/splat/14.4.1/lib/net6.0/Splat.dll
+/Users/kuehnl/.nuget/packages/sqlite-net-pcl/1.9.172/lib/netstandard2.0/SQLite-net.dll
+/Users/kuehnl/.nuget/packages/sqlitepclraw.bundle_green/2.1.2/lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll
+/Users/kuehnl/.nuget/packages/sqlitepclraw.core/2.1.2/lib/netstandard2.0/SQLitePCLRaw.core.dll
+/Users/kuehnl/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.2/lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.5/ref/net8.0/System.AppContext.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.5/ref/net8.0/System.Buffers.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.5/ref/net8.0/System.Collections.Concurrent.dll

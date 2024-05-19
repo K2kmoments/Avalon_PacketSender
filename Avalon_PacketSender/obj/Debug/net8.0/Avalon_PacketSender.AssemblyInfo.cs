@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Avalon_PacketSender")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79af7ae21a29dcc702b712f734a44833edf4b204")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9963ccbdbaa28480a2b85363b0af397a057510a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Avalon_PacketSender")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Avalon_PacketSender")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

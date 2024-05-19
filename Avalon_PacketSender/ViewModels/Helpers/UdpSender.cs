@@ -29,7 +29,7 @@ public static class UdpSender
         return splitValues.All(r => byte.TryParse(r, out tempForParsing));
     }
     
-    public static async void UdpsendMessage(string message, string ipAddress, string portString)
+    public static async void UdpsendMessage(string? message, string? ipAddress, string? portString)
     {
         int port = int.Parse(portString);
         using (var udpClient = new UdpClient(ipAddress, port))

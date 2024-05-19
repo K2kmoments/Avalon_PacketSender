@@ -1,13 +1,44 @@
-﻿using Avalon_PacketSender.ViewModels.Commands;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Avalon_PacketSender.Models;
+using Avalon_PacketSender.ViewModels.Commands;
+using Avalon_PacketSender.ViewModels.Helpers;
 using Avalon_PacketSender.Views;
 
 namespace Avalon_PacketSender.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
+  
+
+    private string? _stringToSendBox;
+    private string? _remoteIpAdressBox;
+    private string? _remotePortBox;
+    private string? _listeningPort;
+    private string? _logAndReceiveTextBox;
+    private List<DataPacketPreset> _presetListBoxList;
+    private DataPacketPreset _selectedPresetInViewer;
+    public DataPacketPreset PresetToDelete { get; set; }
     
+
+    public DataPacketPreset selectedPresetInViewer
+    {
+        get => _selectedPresetInViewer;
+        set
+        {
+            if (Equals(value, _selectedPresetInViewer)) return;
+            _selectedPresetInViewer = value;
+            OnPropertyChanged();
+            SelectPreset();
+        }
+    }
+
+    public ObservableCollection<DataPacketPreset> DataPacketPresetsoObservableCollectionbs { get; set; }
+    public DeletePresetCommand DeletePresetCommand { get; set; }
+    public SavePresetCommand SavePresetCommand { get; set; }
     public SendPacketCommand SendCommand {get;set;}
     public ListenToUdpComamnd ListenToUdpComamnd { get; set; }
+    public SendPresetCommand SendPresetCommand { get; set; }
     public string ListeningPort
     {
         get => _listeningPort;
@@ -19,6 +50,16 @@ public class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public List<DataPacketPreset> PresetListBoxList
+    {
+        get => _presetListBoxList;
+        set
+        {
+            if (Equals(value, _presetListBoxList)) return;
+            _presetListBoxList = value;
+            OnPropertyChanged();
+        }
+    }
     public string? LogAndReceiveTextBox
     {
         get => _logAndReceiveTextBox;
@@ -29,12 +70,6 @@ public class MainWindowViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-
-    private string? _stringToSendBox;
-    private string? _remoteIpAdressBox;
-    private string? _remotePortBox;
-    private string? _listeningPort;
-    private string? _logAndReceiveTextBox;
 
     public string? StringToSendBox
     {
@@ -74,11 +109,33 @@ public class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
+        //Commands
         SendCommand = new SendPacketCommand(this);
         ListenToUdpComamnd = new ListenToUdpComamnd(this);
+        SavePresetCommand = new SavePresetCommand(this);
+        DeletePresetCommand = new DeletePresetCommand(this);
+        SendPresetCommand = new SendPresetCommand(this);
+        //Initalisiere Preset Database
         
+        var database = SqLiteHelper.ReadPacketDatabase();
+        PresetListBoxList = database;
+       
+
+       
     }
-    
+
+    private void SelectPreset()
+    {
+        var selectedViewer = selectedPresetInViewer;
+        StringToSendBox = selectedViewer.StringToSend;
+        RemotePortBox = selectedViewer.RemotePort;
+        RemoteIpAdressBox = selectedViewer.RemoteIpAdress;
+       
+        
+        selectedViewer = null;
+    }
+
+   
    
     
 }

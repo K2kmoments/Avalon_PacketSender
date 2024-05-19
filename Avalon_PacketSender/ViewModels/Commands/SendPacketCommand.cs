@@ -14,8 +14,8 @@ public class SendPacketCommand(MainWindowViewModel vm) : ICommand
     {
         var isCorrectIp = _vm != null && UdpSender.ValidateIPv4(_vm.RemoteIpAdressBox ?? throw new InvalidOperationException());
         
-        if ((string.IsNullOrWhiteSpace(_vm.RemotePortBox)) || ((string.IsNullOrWhiteSpace(_vm.StringToSendBox)) 
-                                                           || (string.IsNullOrWhiteSpace(_vm.RemoteIpAdressBox )&& isCorrectIp == false)))
+        
+        if (string.IsNullOrWhiteSpace(vm.StringToSendBox) && (isCorrectIp = false))
         {
             return false;
         }

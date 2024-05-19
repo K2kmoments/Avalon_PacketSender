@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="Avalon_PacketSender/App.axaml" value="Avalon_PacketSender/Avalon_PacketSender.csproj" />
+        <entry key="Avalon_PacketSender/ViewModels/MainViewViewModel.axaml" value="Avalon_PacketSender/Avalon_PacketSender.csproj" />
         <entry key="Avalon_PacketSender/Views/MainWindow.axaml" value="Avalon_PacketSender/Avalon_PacketSender.csproj" />
         <entry key="Avalon_PacketSender/Views/TEST.axaml" value="Avalon_PacketSender/Avalon_PacketSender.csproj" />
         <entry key="Avalon_PacketSender/Views/sooooooo.axaml" value="Avalon_PacketSender/Avalon_PacketSender.csproj" />
