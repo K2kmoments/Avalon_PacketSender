@@ -24,6 +24,7 @@ public class ListenToUdpComamnd : ICommand
 
     public void Execute(object? parameter)
     {
+        _vm.LogAndReceiveTextBox = "";
         using (UdpReceiver receiver = new UdpReceiver(_vm.ListeningPort))
         {
             receiver.PacketReceived += UdpReceiveMessage_PacketReceived;

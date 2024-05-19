@@ -8,7 +8,7 @@ using Avalonia.Media;
 
 namespace Avalon_PacketSender.ViewModels.Helpers;
 
-public static class UdpHelper
+public static class UdpSender
 { 
     
     public static bool ValidateIPv4(string ipString)
@@ -39,15 +39,5 @@ public static class UdpHelper
         }
     }
     
-    
-
-    private static void UdpReceiveMessage_PacketReceived(object? sender, string eventMessage)
-    {
-        if (eventMessage != null)
-        {
-            Console.WriteLine(eventMessage);
-        }
-
-    }
     
 }

@@ -53,37 +53,11 @@ public class UdpReceiver : IDisposable
             catch (Exception e) { Console.WriteLine(e.ToString()); }
         }
     }
-    
-/*
-    public async Task<string?> UdpReceiveAsync(string ListeningPort)
-    {
-        int portForListener = int.Parse(ListeningPort);
-        
-        //Creates a UdpClient for reading incoming data.
-        using (UdpClient receivingUdpClient = new UdpClient(portForListener))
-        {
-            
-            //Creates an IPEndPoint to record the IP Address and port number of the sender.
-            // The IPEndPoint will allow you to read datagrams sent from any source. 
-            IPEndPoint remoteIpEndPoint = new IPEndPoint(IPAddress.Any, portForListener);
-
-        
-            
-            //Blocks until a message comes on this socket from a remote host.
-            var rxResult = await receivingUdpClient.ReceiveAsync();
-            _udpReceived = Encoding.ASCII.GetString(rxResult.Buffer);
-
-                
-            //string? allInfosData = $"{rxResult.RemoteEndPoint.Address} PORT: {rxResult.RemoteEndPoint.Port.ToString()} SAYS: {_returnDataString}";
-            //PacketReceived.Invoke(this, allInfosData);
-        }
-return _udpReceived;
-        
-    }
-*/
+  
 
 public void Dispose()
 {
     // TODO release managed resources here
+    
 }
 }

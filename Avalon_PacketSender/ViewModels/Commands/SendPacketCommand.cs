@@ -5,24 +5,20 @@ using Avalon_PacketSender.Views;
 
 namespace Avalon_PacketSender.ViewModels.Commands;
 
-public class SendPacketCommand : ICommand
+public class SendPacketCommand(MainWindowViewModel vm) : ICommand
 {
-    private readonly MainWindowViewModel? _vm;
-   
-   
-    public SendPacketCommand(MainWindowViewModel vm)
-    {
-        _vm = vm;
-        
-    }
+    private readonly MainWindowViewModel? _vm = vm;
 
 
     public bool CanExecute(object? parameter)
     {
-        bool isCorrectIp = UdpHelper.ValidateIPv4(_vm.RemoteIpAdressBox);
-        if (_vm != null && string.IsNullOrWhiteSpace(_vm.StringToSendBox)){return false;}
-        else if (_vm != null && string.IsNullOrWhiteSpace(_vm.RemoteIpAdressBox )&& isCorrectIp == false){return false;}
-        else if(_vm != null && string.IsNullOrWhiteSpace(_vm.RemotePortBox)){return false;}
+        var isCorrectIp = _vm != null && UdpSender.ValidateIPv4(_vm.RemoteIpAdressBox ?? throw new InvalidOperationException());
+        
+        if ((string.IsNullOrWhiteSpace(_vm.RemotePortBox)) || ((string.IsNullOrWhiteSpace(_vm.StringToSendBox)) 
+                                                           || (string.IsNullOrWhiteSpace(_vm.RemoteIpAdressBox )&& isCorrectIp == false)))
+        {
+            return false;
+        }
         
         return true;
     }
@@ -31,7 +27,7 @@ public class SendPacketCommand : ICommand
     {
         //testwindow.Show();
         
-        UdpHelper.UdpsendMessage(_vm.StringToSendBox, _vm.RemoteIpAdressBox, _vm.RemotePortBox);
+        UdpSender.UdpsendMessage(_vm.StringToSendBox, _vm.RemoteIpAdressBox, _vm.RemotePortBox);
     }
 
     public event EventHandler? CanExecuteChanged;

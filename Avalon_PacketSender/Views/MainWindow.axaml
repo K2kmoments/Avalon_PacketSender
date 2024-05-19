@@ -139,38 +139,31 @@
                     FontWeight="Black"
                     Foreground="#f8f8f8" />
                 <Grid Background="#454545" Grid.Row="1">
-                    <ListBox Background="Transparent">
-                        <ListBoxItem Height="35" VerticalAlignment="Top">
-                            <Grid ColumnDefinitions="*,*">
-                                <Grid Grid.Column="0">
-                                    <TextBlock Text="Ascii: Hello Dude Adress: 172.20.0.100:5000" />
-                                </Grid>
-                                <Grid Grid.Column="1">
+                    <ListBox>
+                        x:Name="EntryListView"
+                        Grid.Column="1"
+                        Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,*,*,*,*">
+                                    <TextBlock
+                                        FontWeight="Bold"
+                                        Grid.Column="0"
+                                        Text="Id" />
+                                    <TextBlock Grid.Column="1" Text="IpAddress" />
+                                    <TextBlock Grid.Column="2" Text="Port" />
+                                    <TextBlock Grid.Column="3" Text="Ascii Message To Send" />
                                     <Button
                                         Background="Chartreuse"
-                                        Content="send"
-                                        Height="15"
+                                        CornerRadius="7"
+                                        Grid.Column="4"
                                         HorizontalAlignment="Right"
-                                        Width="50" />
+                                        Width="40" />
                                 </Grid>
-                            </Grid>
-                        </ListBoxItem>
-                        <ListBoxItem Height="35" VerticalAlignment="Top">
-                            <Grid ColumnDefinitions="*,*">
-                                <Grid Grid.Column="0">
-                                    <TextBlock Text="Ascii: Ehh Bullshit Adress: 172.20.0.100:5000" />
-                                </Grid>
-                                <Grid Grid.Column="1">
-                                    <Button
-                                        Background="Chartreuse"
-                                        Content="send"
-                                        Height="15"
-                                        HorizontalAlignment="Right"
-                                        Width="50" />
-                                </Grid>
-                            </Grid>
-                        </ListBoxItem>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
+
                 </Grid>
             </Grid>
 

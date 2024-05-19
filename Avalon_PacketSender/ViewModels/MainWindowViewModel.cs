@@ -44,6 +44,7 @@ public class MainWindowViewModel : ViewModelBase
             if (value == _stringToSendBox) return;
             _stringToSendBox = value;
             OnPropertyChanged();
+          
         }
     }
 
@@ -55,6 +56,7 @@ public class MainWindowViewModel : ViewModelBase
             if (value == _remoteIpAdressBox) return;
             _remoteIpAdressBox = value;
             OnPropertyChanged();
+            
         }
     }
 
@@ -66,6 +68,7 @@ public class MainWindowViewModel : ViewModelBase
             if (value == _remotePortBox) return;
             _remotePortBox = value;
             OnPropertyChanged();
+            
         }
     }
 

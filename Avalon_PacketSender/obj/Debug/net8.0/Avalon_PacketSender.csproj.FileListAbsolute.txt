@@ -129,3 +129,4 @@
 /Users/kuehnl/RiderProjects/Avalon_PacketSender/Avalon_PacketSender/obj/Debug/net8.0/Avalon_P.A15FA1A5.Up2Date
 /Users/kuehnl/RiderProjects/Avalon_PacketSender/Avalon_PacketSender/obj/Debug/net8.0/Avalon_PacketSender.genruntimeconfig.cache
 /Users/kuehnl/RiderProjects/Avalon_PacketSender/Avalon_PacketSender/obj/Debug/net8.0/ref/Avalon_PacketSender.dll
+/Users/kuehnl/RiderProjects/Avalon_PacketSender/Avalon_PacketSender/obj/Debug/net8.0/Avalon_PacketSender.sourcelink.json
