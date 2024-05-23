@@ -5,16 +5,13 @@ using Avalon_PacketSender.ViewModels.Helpers;
 
 namespace Avalon_PacketSender.ViewModels.Commands;
 
-public class SavePresetCommand : ICommand
+public class SavePresetCommand(MainWindowViewModel vm) : ICommand
 {
     private MainWindowViewModel Vm {
         get;
         set;
-    }
-    public SavePresetCommand(MainWindowViewModel vm)
-    {
-        Vm = vm;
-    }
+    } = vm;
+
     public bool CanExecute(object? parameter)
     {
         if (string.IsNullOrWhiteSpace(Vm.StringToSendBox)) return false;

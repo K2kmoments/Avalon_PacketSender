@@ -118,7 +118,7 @@
                                 Width="70" />
                             <Button
                                 Command="{Binding DeletePresetCommand}"
-                                CommandParameter="{Binding selectedPresetInViewer}"
+                                CommandParameter="{Binding SelectedPresetInViewer}"
                                 Content="Delete"
                                 CornerRadius="7"
                                 Height="37"
@@ -170,7 +170,7 @@
                         Background="Transparent"
                         ItemsSource="{Binding PresetListBoxList}"
                         Name="PresetListView"
-                        SelectedItem="{Binding selectedPresetInViewer}">
+                        SelectedItem="{Binding SelectedPresetInViewer}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid ColumnDefinitions="40,100,60,6*,*">
@@ -181,7 +181,7 @@
                                     <TextBlock
                                         Grid.Column="1"
                                         Name="IpAdress"
-                                        Text="{Binding RemoteIpAdress}" />
+                                        Text="{Binding RemoteIpAddress}" />
                                     <TextBlock
                                         Grid.Column="2"
                                         Name="Port"
@@ -218,12 +218,12 @@
 
         </Grid>
 
-        <!--  GRID ROW 3 : LOGBOX SENDINGS  -->
+        <!--  GRID ROW 3 : Incming Message BOX  -->
         <Grid Background="#353535" Grid.Row="2">
             <Grid Grid.RowDefinitions="30,*" Margin="30,0,30,15">
                 <Grid Grid.ColumnDefinitions="70,*,70">
                     <Label
-                        Content="Log Events"
+                        Content="Listening"
                         FontSize="12"
                         FontWeight="Black"
                         Foreground="#f8f8f8"
@@ -244,7 +244,7 @@
 
                     <ToggleButton
                         Background="Gray"
-                        Command="{Binding ListenToUdpComamnd}"
+                        Command="{Binding ListenToUdpCommand}"
                         CommandParameter="{Binding ListeningPort}"
                         Grid.Column="2"
                         HorizontalAlignment="Right"

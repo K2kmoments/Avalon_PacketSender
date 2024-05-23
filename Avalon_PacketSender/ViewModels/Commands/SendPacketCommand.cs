@@ -7,15 +7,14 @@ namespace Avalon_PacketSender.ViewModels.Commands;
 
 public class SendPacketCommand(MainWindowViewModel vm) : ICommand
 {
-    private readonly MainWindowViewModel? _vm = vm;
+    private readonly MainWindowViewModel? Vm = vm;
 
 
     public bool CanExecute(object? parameter)
     {
-        var isCorrectIp = _vm != null && UdpSender.ValidateIPv4(_vm.RemoteIpAdressBox ?? throw new InvalidOperationException());
         
         
-        if (string.IsNullOrWhiteSpace(vm.StringToSendBox) && (isCorrectIp = false))
+        if (string.IsNullOrWhiteSpace(Vm?.StringToSendBox))
         {
             return false;
         }
@@ -27,7 +26,7 @@ public class SendPacketCommand(MainWindowViewModel vm) : ICommand
     {
         //testwindow.Show();
         
-        UdpSender.UdpsendMessage(_vm.StringToSendBox, _vm.RemoteIpAdressBox, _vm.RemotePortBox);
+        UdpSender.UdpSendMessage(Vm?.StringToSendBox, Vm?.RemoteIpAdressBox, Vm?.RemotePortBox);
     }
 
     public event EventHandler? CanExecuteChanged;

@@ -1,6 +1,3 @@
-using Avalon_PacketSender.ViewModels;
-using Avalon_PacketSender.ViewModels.Helpers;
-using Avalonia.Remote.Protocol.Input;
 using SQLite;
 
 
@@ -13,7 +10,7 @@ public class DataPacketPreset
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
     public string? StringToSend { get; set; }
-    public string? RemoteIpAdress { get; set; }
+    public string? RemoteIpAddress { get; set; }
     public string? RemotePort { get; set; }
     
 
@@ -25,7 +22,7 @@ public class DataPacketPreset
         // Original: return base.ToString();
         //Override:
 
-        return $"{StringToSend}, {RemoteIpAdress} {RemotePort}";
+        return $"{StringToSend}, {RemoteIpAddress} {RemotePort}";
     }
 */
 }

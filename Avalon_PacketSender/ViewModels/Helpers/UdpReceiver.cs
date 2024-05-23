@@ -8,8 +8,8 @@ namespace Avalon_PacketSender.ViewModels.Helpers;
 
 public class UdpReceiver : IDisposable
 {
-    public string ListeningPort { get; set; }
-    public UdpReceiver(string listeningPort)
+    public string? ListeningPort { get; set; }
+    public UdpReceiver(string? listeningPort)
     {
         ListeningPort = listeningPort;
         Task.Run(UdpReceiveAsync);
@@ -21,36 +21,36 @@ public class UdpReceiver : IDisposable
     
   
     //Neuer EVENTHANDLER mit String Rückgabe
-    public event EventHandler<string> PacketReceived;
+    public event EventHandler<string>? PacketReceived;
 
 
     public async Task UdpReceiveAsync()
     {
-        int portForListener = int.Parse(ListeningPort);
-        //Creates a UdpClient for reading incoming data.
-        UdpClient receivingUdpClient = new UdpClient(portForListener);
-
-        //Creates an IPEndPoint to record the IP Address and port number of the sender.
-        // The IPEndPoint will allow you to read datagrams sent from any source. 
-        IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
-
-        while (true)
+        if (ListeningPort != null)
         {
-            try
+            int portForListener = int.Parse(ListeningPort);
+            //Creates a UdpClient for reading incoming data.
+            UdpClient receivingUdpClient = new UdpClient(portForListener);
+            
+
+            while (true)
             {
+                try
+                {
 
-                //Blocks until a message returns on this socket from a remote host.
-                var rxResult = await receivingUdpClient.ReceiveAsync();
+                    //Blocks until a message returns on this socket from a remote host.
+                    var rxResult = await receivingUdpClient.ReceiveAsync();
 
-                _udpReceived = Encoding.ASCII.GetString(rxResult.Buffer);
+                    _udpReceived = Encoding.ASCII.GetString(rxResult.Buffer);
 
-                string? allInfosData = $"{rxResult.RemoteEndPoint.Address} PORT: {rxResult.RemoteEndPoint.Port.ToString()} SAYS: {_udpReceived}";
+                    var allInfosData = $"FROM: {rxResult.RemoteEndPoint.Address} PORT: {rxResult.RemoteEndPoint.Port.ToString()} MESSAGE: {_udpReceived} \n";
 
-                PacketReceived.Invoke(this, allInfosData);
+                    PacketReceived?.Invoke(this, allInfosData);
 
                 
+                }
+                catch (Exception e) { Console.WriteLine(e.ToString()); }
             }
-            catch (Exception e) { Console.WriteLine(e.ToString()); }
         }
     }
   

@@ -4,27 +4,22 @@ using Avalon_PacketSender.ViewModels.Helpers;
 
 namespace Avalon_PacketSender.ViewModels.Commands;
 
-public class DeletePresetCommand : ICommand
+public class DeletePresetCommand(MainWindowViewModel vm) : ICommand
 {
-    public MainWindowViewModel Vm {
+    private MainWindowViewModel Vm {
         get;
         set;
-    }
-
-    public DeletePresetCommand(MainWindowViewModel vm)
-    {
-        Vm = vm;
-    }
+    } = vm;
 
     public bool CanExecute(object? parameter)
     {
-        if (Vm.selectedPresetInViewer == null) return false;
+        if (Vm.SelectedPresetInViewer == null) return false;
         return true;
     }
 
     public void Execute(object? parameter)
     {
-            SqLiteHelper.DeletePacketPresetInDatabase(Vm.selectedPresetInViewer);
+            _ = SqLiteHelper.DeletePacketPresetInDatabase(Vm.SelectedPresetInViewer);
             Vm.PresetListBoxList = SqLiteHelper.ReadPacketDatabase();
     }
 

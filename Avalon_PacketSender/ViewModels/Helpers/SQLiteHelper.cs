@@ -1,32 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Avalon_PacketSender.Models;
-using Avalonia.Interactivity;
 using SQLite;
 
 namespace Avalon_PacketSender.ViewModels.Helpers;
 
-public class SqLiteHelper
+public static class SqLiteHelper
 {
-    private static string databaseName = "UdpMachineSavedPresets.db";
-    static string databasePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    public static string DatabasePathName = System.IO.Path.Combine(databasePath, databaseName);
+    private static readonly string DatabaseName = "UdpMachineSavedPresets.db";
+    private static readonly string DatabasePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); //optional change Path to Environment.CurrentDirectory
+    private static readonly string DatabasePathName = System.IO.Path.Combine(DatabasePath, DatabaseName);
 
-    public DataPacketPreset PresetToSave {get;set;}
-
-    public SqLiteHelper()
-    {
-   
-    }
-
-    public static void SavePacketInSql(string stringToSend,string remoteIpAdress, string remotePort)
+    public static void SavePacketInSql(string? stringToSend,string? remoteIpAddress, string? remotePort)
     {
         DataPacketPreset newPreset = new DataPacketPreset()
         {
             StringToSend = stringToSend,
-            RemoteIpAdress = remoteIpAdress,
+            RemoteIpAddress = remoteIpAddress,
             RemotePort = remotePort
         };
         using (SQLiteConnection connection = new SQLiteConnection(DatabasePathName))
@@ -36,19 +27,19 @@ public class SqLiteHelper
         }
     }
 
-    public static List<DataPacketPreset> ReadPacketDatabase()
+    public static List<DataPacketPreset>? ReadPacketDatabase()
     {
-        List<DataPacketPreset> PresetInTable;
+        List<DataPacketPreset>? presetInTable;
 
         using (SQLiteConnection connection = new SQLiteConnection(DatabasePathName))
         {
             connection.CreateTable<DataPacketPreset>();
-            PresetInTable = connection.Table<DataPacketPreset>().ToList();
+            presetInTable = connection.Table<DataPacketPreset>().ToList();
         }
 
-        return PresetInTable;
+        return presetInTable;
     }
-    public static async Task DeletePacketPresetInDatabase(DataPacketPreset selectedPreset)
+    public static Task DeletePacketPresetInDatabase(DataPacketPreset? selectedPreset)
     {
         using (SQLiteConnection connection = new SQLiteConnection(DatabasePathName))
         {
@@ -56,5 +47,7 @@ public class SqLiteHelper
             connection.Delete(selectedPreset);
             
         }
+
+        return Task.CompletedTask;
     }
 }

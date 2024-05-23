@@ -29,13 +29,20 @@ public static class UdpSender
         return splitValues.All(r => byte.TryParse(r, out tempForParsing));
     }
     
-    public static async void UdpsendMessage(string? message, string? ipAddress, string? portString)
+    public static async void UdpSendMessage(string? message, string? ipAddress, string? portString)
     {
-        int port = int.Parse(portString);
-        using (var udpClient = new UdpClient(ipAddress, port))
+        if (portString != null)
         {
-            Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
-            await udpClient.SendAsync(sendBytes, sendBytes.Length);
+            int port = int.Parse(portString);
+            if (ipAddress != null)
+                using (var udpClient = new UdpClient(ipAddress, port))
+                {
+                    if (message != null)
+                    {
+                        Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
+                        await udpClient.SendAsync(sendBytes, sendBytes.Length);
+                    }
+                }
         }
     }
     
