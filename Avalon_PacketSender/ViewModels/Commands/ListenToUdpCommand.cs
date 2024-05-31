@@ -10,18 +10,20 @@ public class ListenToUdpCommand(MainWindowViewModel vm) : ICommand
 {
     public bool CanExecute(object? parameter)
     {
-        if (string.IsNullOrWhiteSpace(vm.ListeningPort)) return false;
+        if(string.IsNullOrWhiteSpace(vm.ListeningPort)) return false;
         
         return true;
     }
 
     public void Execute(object? parameter)
     {
+            
             vm.LogAndReceiveTextBox = "";
             using (UdpReceiver receiver = new UdpReceiver(vm.ListeningPort))
             {
                 receiver.PacketReceived += UdpReceiveMessage_PacketReceived;
             } 
+            
     }
     public void UdpReceiveMessage_PacketReceived(object? sender, string eventMessage)
     {
